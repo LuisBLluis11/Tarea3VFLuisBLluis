@@ -28,10 +28,11 @@ El siguiente proyecto contiene los siguientes archivos.
     archivos *binary_tree.v , braunT_bn.v, 
     lookupdBN, btExtensions*. Este archivo
     depende *Props_BT.v".
-##Dependencias
+	
+## Dependencias
 Las dependencias de estos archivos están en el orden mencionado anteriormente. 
 
-##Nota
+## Nota
 Las definiciones de *lr hr* se encuentran en el 
 archivo *Props_BT.v* para dar conexidad a los ejercicios. Los ejercicios se pueden encontrar rápidamente buscando la cadena "123". 
 
