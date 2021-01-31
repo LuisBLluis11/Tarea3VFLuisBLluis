@@ -17,17 +17,17 @@ El siguiente proyecto contiene los siguientes archivos.
     le, he*. Este archivo corresponde con los
     archivos *binary_tree.v , braunT_bn.v, 
     lookupdBN, btExtensions*. Este archivo
-    depende *Defs_BN.v".
+    depende *Defs_BN.v*.
 3. *Props_BN.v*: Teoremas de números por paridad.
      Este archivo corresponde con 
     *bn2.v* y *orderbn.v*. Depende de *Defs_BT.v*.Este archivo
-    depende *Defs_BT.v".
+    depende *Defs_BT.v*.
 4. *Props_BT.v*: Propiedades árboles de Braun y 
     ejercicios de tarea3
     Este archivo corresponde con los
     archivos *binary_tree.v , braunT_bn.v, 
     lookupdBN, btExtensions*. Este archivo
-    depende *Props_BT.v".
+    depende *Props_BT.v*.
 	
 ## Dependencias
 Las dependencias de estos archivos están en el orden mencionado anteriormente. 
