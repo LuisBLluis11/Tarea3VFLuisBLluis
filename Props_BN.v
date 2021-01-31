@@ -22,7 +22,7 @@ Load Defs_BT .
           Se intentó concretar una mayoría
           (nadie quiere probar transitividad hahahahaha)
           
-          
+  Dependencias: Defs_BN y Defs_BT   
   Contenido
   1.- bn2----------------no depends
       bn sucBN predBN toN toBN plusBN   

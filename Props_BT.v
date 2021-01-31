@@ -28,7 +28,7 @@ Load Props_BN .
     Para encontrar estos lemas solo hay que buscar la cadena 
     "456". Estos teoremas están comentados. 
     
-          
+  Dependencias: Defs_BN  Defs_BT  Props_BN
   Contenido 
   2.- binary_tree--------no depends
       BTree

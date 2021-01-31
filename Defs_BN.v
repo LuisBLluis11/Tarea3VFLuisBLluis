@@ -1,3 +1,4 @@
+
 Add LoadPath "C:\Users\spide\Documents\Tareas\VerificacionFormal\Tareas\Tarea3\Tarea3VFLuisBLluis" as camino. 
  
 (** Tarea 3 Verificación Formal
@@ -7,14 +8,14 @@ Add LoadPath "C:\Users\spide\Documents\Tareas\VerificacionFormal\Tareas\Tarea3\T
     Este script es una concatenación 
     de scripts bn2.v , orderbn.v 
     de Favio Ezequiel Miranda. 
-    
-    (* Contenido
+  Dependencias: NONE  
+  Contenido
   1.- bn2----------------no depends
       bn sucBN predBN toN toBN plusBN   
   3.- orderbn------------depends bn2
       ltBN lteqBN
      
-*)*)
+*)
 
 
 (** 1.------------- bn-----------------------*)
@@ -80,7 +81,7 @@ Fixpoint plusBN (a b : BN) : BN :=
 Notation "a ⊞ b" := (plusBN a b) (at level 60). 
 
 
-(** 3.----------------------- orderbn ------------------------*)
+(** 3.----------------------- orderbn *)
 Inductive ltBN : BN -> BN -> Prop :=
  | ltBNZU : forall (a:BN), ltBN Z (U a)
  | ltBNZD : forall (a:BN), ltBN Z (D a)

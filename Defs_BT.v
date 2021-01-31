@@ -18,6 +18,7 @@ Load Defs_BN .
     dejar todos los ejercios juntos de la tarea.
     Para una rápida localización se puede buscar la cadena "123".
     
+  Dependencias: Defs_BN 
   Contenido
      
   2.- binary_tree--------no depends
