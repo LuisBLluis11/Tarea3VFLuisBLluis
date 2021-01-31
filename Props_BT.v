@@ -4,9 +4,48 @@ From Tarea3VF Require Import Props_BN . *)
 Add LoadPath "C:\Users\spide\Documents\Tareas\VerificacionFormal\Tareas\Tarea3\Tarea3VFLuisBLluis" as camino. 
 
 Load Props_BN .
+(** Tarea 3 Verificación Formal
+    Luis B. Lluis LL11
+    El siguiente script contiene las propiedades  
+    de árboles de braun junto con los ejercicios de tarea. 
+    Este script es una concatenación 
+    de scripts binary_tree.v , braunT_bn.v , 
+    lookupdBN.v y  btExtensions.v
+    de Favio Ezequiel Miranda con ligeras modificaciones,
+    alteraciones en orden,adición de lemas, generalizaciones
+    a teoremas existentes o adición de pruebas.
+    Las modificaciones son mínimas.
+    
+    NOTA1: En este script se encuentran las definiciones de 
+    lr y hr para dar continuidad a los ejercicios. 
+    Para una hallar rápidamente la sección de los ejercicios
+    basta buscar la cadena "123". 
+    
+    NOTA2: Sólo hay un terorema admitido (bbal_inv) 
+    el cual sólo se usa en dos lemas
+    (elmnt_lkp_upd , bsize_upd)
+    que no figuran en los ejercicios de la tarea.
+    Para encontrar estos lemas solo hay que buscar la cadena 
+    "456". Estos teoremas están comentados. 
+    
+          
+  Contenido 
+  2.- binary_tree--------no depends
+      BTree
+     
+  4.- braunT_bn----------depends orderbn binary_tree
+      bsize bbal 
+      
+  5.- lookupdBN----------depends braunT_bn
+      lookup_bn update
+      
+  6.- btExtensions-------depends lookup 
+      le he
+  7.- Tarea3VF-----------depends btExtensions
+      lr hr  (buscar "123")
+*)
 
-
-(** 2.- binary_tree *)
+(** 2.- ---------binary_tree --------------------------*)
 (* (* Definition of binary trees and some of their properties  *)
 
 Parameter (A:Type)
@@ -20,14 +59,8 @@ Inductive BTree : Type :=
   | N : A -> BTree  -> BTree  -> BTree.
 
 Check BTree_ind.
+*)
 
- *)
-(* Parameter (undefBTree : BTree). *)
-(* Parameter (A:Type). *)
-(* Parameter (eq_dec_A: forall (x y:A),{x=y}+{x<>y}). *)
-(* Parameter (undefA : A).
-Parameter (undefBN: BN). *)
-(* Parameter (allBal: forall (t:BTree), bbal t). *)
 
 
 Theorem eq_btree_dec: forall (s t:BTree), {s=t} + {s<>t}.
@@ -49,7 +82,7 @@ exists t2.
 trivial.
 Qed.
 
-(** 4.- braunT_bn*)
+(** 4.-------------------- braunT_bn--------------------*)
 (*
 (* *size on binary trees defined next*)
 Fixpoint bsize (t:BTree): BN :=
@@ -359,8 +392,8 @@ inversion H7.
 Qed.
 
 
-
-Lemma bbal_inv: forall (t:BTree), t <> E ->  
+(* 456  lema no usado*)
+(* Lemma bbal_inv: forall (t:BTree), t <> E ->  
        (exists (z:A), t = N z E E)  \/ 
         exists (z:A) (r1 r2:BTree), 
                bbal r1 /\ 
@@ -383,9 +416,9 @@ Proof.
 
   
   
-Admitted.
+Admitted. *)
 
-(** 5.- lookupdBN*)
+(** 5.-------------------- lookupdBN-------------------*)
 (* 
 
 Fixpoint lookup_bn (t:BTree) (b: BN) : A :=
@@ -536,8 +569,8 @@ induction H.
           ++ apply bbal_size_r2.  
 Qed.       
        
-          
-Lemma elmnt_lkp_upd : forall (t:BTree) (i j:BN), 
+     (* 456  Lema no usado*)     
+(* Lemma elmnt_lkp_upd : forall (t:BTree) (i j:BN), 
                         i <BN (bsize t) -> j <BN (bsize t) -> 
                         i <> j -> 
                         forall (x:A), 
@@ -613,9 +646,9 @@ destruct i.
      ++ contradict H1.
         subst;reflexivity.
 Qed.
-
-
-Lemma bsize_upd: forall (t:BTree) (x:A) (b:BN), 
+ *)
+(* 456 lema no usado*)
+(* Lemma bsize_upd: forall (t:BTree) (x:A) (b:BN), 
                   b <BN bsize t -> bsize t = bsize (update t b x).
 Proof.
 intro t.
@@ -658,8 +691,8 @@ destruct (bbal_inv (N a t1 t2)).
     -- apply (lt_D_bsize b x0 x1 x2).
        assumption.
 Qed.
-     
-(** 6.-btExtensions *)
+      *)
+(** 6.------------------btExtensions----------------- *)
 
 Lemma le_hasroot: forall (a:A)(t:BTree), 
     exists (t1 t2:BTree),
@@ -912,12 +945,12 @@ induction t.
       ** assumption.
       ** assumption.
 Qed.      
-(** 7.- Ejercicios de tarea*)
+(** 7.-------------- Ejercicios de tarea-----------------123*)
 
 
 (** 1.-*)
-Fixpoint lr (t1:BTree) : BTree :=
- match t1 with
+Fixpoint lr (t:BTree) : BTree :=
+ match t with
   | E => undefBTree
   | N x l r => match l with
                | E => E
@@ -925,12 +958,12 @@ Fixpoint lr (t1:BTree) : BTree :=
                end
  end.
 
-Fixpoint hr (t1:BTree) : BTree  :=
- match t1 with
+Fixpoint hr (t:BTree) : BTree  :=
+ match t with
   | E => undefBTree
   | N x l r => match l with 
                | E => E
-               | _ => match bsize t1 with 
+               | _ => match bsize t with 
                       | U b => N x l (hr r)
                       | D b => N x (hr l) r
                       |   Z => undefBTree 

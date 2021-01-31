@@ -3,6 +3,8 @@ Require Import Arith.
 Require Import ArithRing.
 Require Import Setoid.
 Require Import Omega.
+Add LoadPath "C:\Users\spide\Documents\Tareas\VerificacionFormal\Tareas\Tarea3\Tarea3VFLuisBLluis" as camino. 
+Load Defs_BT . 
 (* From Tarea3VF Require Import Defs_BN . *)
 
 (** Tarea 3 Verificación Formal
@@ -19,11 +21,19 @@ Require Import Omega.
           absolutamente necesario concretarlos todos. 
           Se intentó concretar una mayoría
           (nadie quiere probar transitividad hahahahaha)
-    *)
+          
+          
+  Contenido
+  1.- bn2----------------no depends
+      bn sucBN predBN toN toBN plusBN   
+  3.- orderbn------------depends bn2
+      ltBN lteqBN
+      
+*)
+ 
 
-Add LoadPath "C:\Users\spide\Documents\Tareas\VerificacionFormal\Tareas\Tarea3\Tarea3VFLuisBLluis" as camino. 
-Load Defs_BT . 
-(** -----------------------bn2---------------------------*) 
+
+(** 1.------------------------bn2---------------------------*) 
 (*Datatype for our numerical system with 0, U and D*) 
 (*
 Inductive BN :=
@@ -602,7 +612,7 @@ apply UInj.
 trivial.
 Qed.
 
-(**-------------orderbn---------------------------------*)
+(** 3.--------------orderbn---------------------------------*)
 
 
 (* Inductive ltBN : BN -> BN -> Prop :=
