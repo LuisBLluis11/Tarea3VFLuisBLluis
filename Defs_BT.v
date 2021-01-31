@@ -1,4 +1,36 @@
-From Tarea3VF Require Import Defs_BN .
+(** Tarea 3 Verificación Formal
+    Luis B. Lluis LL11
+    El siguiente script contiene las notaciones y definiciones 
+    para árboles de braun.
+    Este script es una concatenación 
+    de scripts binary_tree.v , braunT_bn.v , lookupdBN.v , btExensions.v
+    de Favio Ezequiel Miranda. 
+    (* Contenido
+  1.- bn2----------------no depends
+      bn sucBN predBN toN toBN plusBN
+     
+  2.- binary_tree--------no depends
+      BTree
+     
+  3.- orderbn------------depends bn2
+      ltBN lteqBN
+     
+  4.- braunT_bn----------depends orderbn binary_tree
+      bsize bbal 
+      
+  5.- lookupdBN----------depends braunT_bn
+      lookup_bn update
+      
+  6.- btExtensions-------depends lookup 
+      le he
+      
+*)*)
+
+Add LoadPath "C:\Users\spide\Documents\Tareas\VerificacionFormal\Tareas\Tarea3\Tarea3VFLuisBLluis" as camino. 
+
+Load Defs_BN . 
+(* From Tarea3VF Require Import Defs_BN .  *)
+
 
 (** 2.- binary_tree*)
 
@@ -28,7 +60,7 @@ Inductive bbal : BTree -> Prop:=
         (bsize t) ≤BN (bsize s) -> 
         (bsize s) ≤BN (sucBN (bsize t)) -> 
                                       bbal (N a s t).
-
+Parameter (allBal: forall (t:BTree), bbal t).
 
 (** 5.- lookupdBN*)
 

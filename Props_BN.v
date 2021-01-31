@@ -3,8 +3,29 @@ Require Import Arith.
 Require Import ArithRing.
 Require Import Setoid.
 Require Import Omega.
-From Tarea3VF Require Import Defs_BN .
-(* (*Datatype for our numerical system with 0, U and D*)
+(* From Tarea3VF Require Import Defs_BN . *)
+
+(** Tarea 3 Verificación Formal
+    Luis B. Lluis LL11
+    El siguiente script contiene las propiedades  
+    de números por paridad. Este script es una concatenación 
+    de scripts bn2.v y orderbn.v 
+    de Favio Ezequiel Miranda con ligeras modificaciones,
+    alteraciones en orden,adición de lemas, generalizaciones
+    a teoremas existentes o adición de pruebas. Las modificaciones 
+    son mínimas.
+    
+    NOTA: Algunos teoremas están admitidos pues se mencionó que no era
+          absolutamente necesario concretarlos todos. 
+          Se intentó concretar una mayoría
+          (nadie quiere probar transitividad hahahahaha)
+    *)
+
+Add LoadPath "C:\Users\spide\Documents\Tareas\VerificacionFormal\Tareas\Tarea3\Tarea3VFLuisBLluis" as camino. 
+Load Defs_BT . 
+(** -----------------------bn2---------------------------*) 
+(*Datatype for our numerical system with 0, U and D*) 
+(*
 Inductive BN :=
   Z: BN
 | U: BN -> BN
@@ -12,7 +33,7 @@ Inductive BN :=
 
 Check BN_ind.
 Check BN_rec.
-Check BN_rect. *)
+Check BN_rect.  *)
 
 Lemma UInj: forall (a b:BN), U a = U b -> a = b.
 Proof.
@@ -148,7 +169,7 @@ exists b;right;trivial.
 Qed.
 
 
-(* Predeccesor function with error *)
+(* (* Predeccesor function with error *)
 
 Parameter (undefBN: BN). (* we assume a constant undefBN:BN representing an undefined BN number *)
 
@@ -159,7 +180,7 @@ Fixpoint predBN (b:BN): BN :=
  |U x => D (predBN x)
  |D x => U x
  end.
-
+ *)
 
 Lemma predBNUD: forall (a:BN), a <> Z -> predBN (U a) = D (predBN a).
 Proof.
@@ -581,7 +602,7 @@ apply UInj.
 trivial.
 Qed.
 
-(** orderbn*)
+(**-------------orderbn---------------------------------*)
 
 
 (* Inductive ltBN : BN -> BN -> Prop :=
@@ -1134,11 +1155,4 @@ split.
 exact H1.
 assumption.
 Qed.
-
-
-
-
-
-
-
 

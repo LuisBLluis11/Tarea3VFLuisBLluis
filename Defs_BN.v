@@ -1,6 +1,35 @@
-(** Definiciones de números por paridad y 
-    orden en éstos
-    Tarea3 VF Luis B. Lluis LL11*)
+(** Tarea 3 Verificación Formal
+    Luis B. Lluis LL11
+    El siguiente script contiene las notaciones y definiciones 
+    para números por paridad.
+    Este script es una concatenación 
+    de scripts bn2.v , orderbn.v 
+    de Favio Ezequiel Miranda. 
+    
+    (* Contenido
+  1.- bn2----------------no depends
+      bn sucBN predBN toN toBN plusBN
+     
+  2.- binary_tree--------no depends
+      BTree
+     
+  3.- orderbn------------depends bn2
+      ltBN lteqBN
+     
+  4.- braunT_bn----------depends orderbn binary_tree
+      bsize bbal 
+      
+  5.- lookupdBN----------depends braunT_bn
+      lookup_bn update
+      
+  6.- btExtensions-------depends lookup 
+      le he
+      
+*)*)
+
+Add LoadPath "C:\Users\spide\Documents\Tareas\VerificacionFormal\Tareas\Tarea3\Tarea3VFLuisBLluis" as camino.  
+
+
 (** 1.- bn*)
 (*Datatype for our numerical system with 0, U and D*)
 Inductive BN :=

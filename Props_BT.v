@@ -1,5 +1,9 @@
+(* From Tarea3VF Require Import Defs_BT .
+From Tarea3VF Require Import Props_BN . *)
 
+Add LoadPath "C:\Users\spide\Documents\Tareas\VerificacionFormal\Tareas\Tarea3\Tarea3VFLuisBLluis" as camino. 
 
+Load Props_BN .
 
 
 (** 2.- binary_tree *)
@@ -18,7 +22,12 @@ Inductive BTree : Type :=
 Check BTree_ind.
 
  *)
-Parameter (undefBTree : BTree).
+(* Parameter (undefBTree : BTree). *)
+(* Parameter (A:Type). *)
+(* Parameter (eq_dec_A: forall (x y:A),{x=y}+{x<>y}). *)
+(* Parameter (undefA : A).
+Parameter (undefBN: BN). *)
+(* Parameter (allBal: forall (t:BTree), bbal t). *)
 
 
 Theorem eq_btree_dec: forall (s t:BTree), {s=t} + {s<>t}.
@@ -26,7 +35,7 @@ Proof.
 intros.
 decide equality.
 apply eq_dec_A.
-Qed.
+Qed. 
 
 
 Lemma nonE_tree: forall (t:BTree), t <> E -> exists (a:A) (t1 t2:BTree), t = N a t1 t2.
@@ -41,8 +50,8 @@ trivial.
 Qed.
 
 (** 4.- braunT_bn*)
-
-((* *size on binary trees defined next*)
+(*
+(* *size on binary trees defined next*)
 Fixpoint bsize (t:BTree): BN :=
  match t with
   E => Z
@@ -99,8 +108,8 @@ apply (bnNonZ (bsize t)) in H.
 trivial.
 Qed.
 
-
-((* * Balance condition on Braun trees *)
+(*
+(* * Balance condition on Braun trees *)
 Inductive bbal : BTree -> Prop:= 
  |bbalE : bbal E 
  |bbalN : forall (a: A) (s t: BTree), 
@@ -110,8 +119,8 @@ Inductive bbal : BTree -> Prop:=
                                       bbal (N a s t).
 
 Check bbal_ind.
- *)
-Parameter (allBal: forall (t:BTree), bbal t).
+*)
+ (*Parameter (allBal: forall (t:BTree), bbal t). *)
 
 
 
@@ -959,49 +968,7 @@ induction t as [| a l IHl r].
        reflexivity.
 Qed.       
   
-(*   destruct (bbal_size_r a l r) .
-  + assert(W:=H1).
-    apply size_caseU in W.
-    destruct l.
-    ++ inversion W.
-       apply leftE_leaf in H0.
-       rewrite H0.
-       simpl.
-       reflexivity.
-       reflexivity.
-    ++ simpl (bsize (lr (N a (N a0 l1 l2) r))).
 
-       simpl in IHl.
-       rewrite IHl.
-       3: assumption.
-       2: intro W1; inversion W1.
-       rewrite plusSuc_2.
-       rewrite predsucBNinv.
-       simpl.
-       rewrite plusComm.
-       reflexivity.
-  + destruct l. 
-(*     ++ inversion W. *)
-++
-       apply leftE_leaf in H0.
-       rewrite H0.
-       simpl.
-       reflexivity.
-       reflexivity.
-    ++ simpl (bsize (lr (N a (N a0 l1 l2) r))).
-(*        simpl (lr (N a (N a0 l1 l2) r)). *)
-       simpl in IHl.
-       rewrite IHl.
-       3: assumption.
-       2: intro W1; inversion W1.
-       rewrite plusSuc_2.
-       rewrite predsucBNinv.
-       simpl.
-       rewrite plusComm.
-       reflexivity.
-         intuition.
-
-Admitted. *)
   
 (** 3.-*)
 Proposition bbal_bbal_lr:
